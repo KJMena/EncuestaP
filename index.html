@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Encuesta de Programación</title>
+        <script src="./js/vue3.js"></script>
+        <link rel="stylesheet" href="./estilo/estilos.css">
+    </head>
+    
+    <body>
+        <section id="componente" style="color: white;">
+            <h1>Encuesta de Programación</h1>
+    
+            <form @submit.prevent>
+                <div class="pregunta">
+                    <label>¿Te gusta programar?</label>
+                    <input type="radio" v-model="gustarProgramar" value="Sí"> Sí
+                    <input type="radio" v-model="gustarProgramar" value="No"> No
+                </div>
+    
+                <div class="pregunta">
+                    <label>¿Cuántos años llevas programando?</label>
+                    <input type="number" v-model="aniosProgramando">
+                </div>
+    
+                <div class="pregunta">
+                    <label>Cuéntanos, ¿Porqué te gusta programar?:</label>
+                    <textarea v-model="experiencia"></textarea>
+                </div>
+    
+                <div class="pregunta">
+                    <label>¿Cuántos lenguajes de programación conoces?</label>
+                    <input type="text" v-model="lenguaje" placeholder="Ingrese el lenguaje">
+                    <button @click="agregarLenguaje">Agregar</button>
+                    <ul>
+                        <li v-for="lenguaje in lenguajes">{{ lenguaje }}</li>
+                    </ul>
+                </div>
+    
+                <button @click="mostrarResultados">Mostrar resultados</button>
+            </form>
+    
+            <div v-if="mostrar">
+                <h3>Resultados</h3>
+                <p>¿Te gusta programar?: {{ gustarProgramar }}</p>
+                <p>Años programando: {{ aniosProgramando }}</p>
+                <p>Experiencia: {{ experiencia }}</p>
+                <p>Lenguajes conocidos:</p>
+                <ul>
+                    <li v-for="lenguaje in lenguajes">{{ lenguaje }}</li>
+                </ul>
+            </div>
+        </section>
+    
+        <script src="./js/script.js"></script>
+    </body>
+</html>
